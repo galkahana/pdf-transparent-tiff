@@ -1,18 +1,19 @@
 project(PDFModernTiff)
 cmake_minimum_required (VERSION 3.10)
 
+include_directories (${PDFWriter_SOURCE_DIR})
+include_directories (${LibTiff_SOURCE_DIR}) # why dont include dirs works?!
 
 add_executable(PDFModernTiff 
+    lib/ModernTiffImageHandler.cpp
+    lib/ModernTiffImageHandler.h
     cli.cpp
 )
 
-include_directories (${PDFWriter_SOURCE_DIR})
-include_directories (${LIBTIFF_INCLUDE_DIRS})
-
-
-
 add_dependencies(PDFModernTiff PDFWriter)
 add_dependencies(PDFModernTiff LibTiff)
+
+
 
 target_link_libraries (PDFModernTiff PDFWriter)
 target_link_libraries (PDFModernTiff ${LIBAESGM_LDFLAGS})
